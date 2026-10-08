@@ -1,0 +1,6 @@
+{
+  "name": "Local Business Digital Kit Generator",
+  "description": "Mobile-first generator to create complete digital kits for local businesses: digital card, catalogue, QR codes, promo posts, and standalone websites.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

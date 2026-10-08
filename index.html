@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Local Business Digital Kit Generator</title>
+    <meta name="description" content="Generate complete digital marketing kits for local businesses: digital card, catalogue, QR codes, promo posts, and standalone websites." />
+    <meta property="og:title" content="Local Business Digital Kit Generator" />
+    <meta property="og:description" content="Generate complete digital marketing kits for local businesses: digital card, catalogue, QR codes, promo posts, and standalone websites." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#090d16" />
+
+    <!-- Pure CSS Stylesheet - Zero External CSS Frameworks -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app-container">
+      <!-- Desktop & Slide-out Sidebar -->
+      <aside id="sidebar">
+        <!-- Sidebar Brand Header -->
+        <div class="sidebar-header">
+          <div class="brand-badge">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text">
+              <h1>Digital Kit Gen</h1>
+              <span>Local Business Suite</span>
+            </div>
+          </div>
+          <button class="modal-close mobile-menu-btn" style="display:none;" onclick="window.App.toggleMobileMenu()">✕</button>
+        </div>
+
+        <!-- Quick Business Switcher Dropdown -->
+        <div class="business-switcher">
+          <div class="switcher-label">
+            <span>Active Business</span>
+            <span style="color:#818cf8;cursor:pointer;" onclick="window.App.startNewBusiness()">+ New</span>
+          </div>
+          <select id="sidebar-business-select" class="switcher-select" onchange="window.App.handleBusinessSwitch(this.value)">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="sidebar-nav">
+          <div class="nav-category">Main Studio</div>
+          <button class="nav-link active" data-view="dashboard" onclick="window.App.switchView('dashboard')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+            <span>Dashboard</span>
+          </button>
+          <button class="nav-link" data-view="business-form" onclick="window.App.switchView('business-form')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            <span>Business Details</span>
+          </button>
+          <button class="nav-link" data-view="services" onclick="window.App.switchView('services')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Services &amp; Pricing</span>
+          </button>
+          <button class="nav-link" data-view="photos" onclick="window.App.switchView('photos')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Photos &amp; Logo</span>
+          </button>
+
+          <div class="nav-category">Generated Assets</div>
+          <button class="nav-link" data-view="card" onclick="window.App.switchView('card')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <span>Digital Business Card</span>
+          </button>
+          <button class="nav-link" data-view="catalogue" onclick="window.App.switchView('catalogue')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Digital Catalogue</span>
+          </button>
+          <button class="nav-link" data-view="qr" onclick="window.App.switchView('qr')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h2v2h-2zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+            <span>QR &amp; Review Standee</span>
+          </button>
+          <button class="nav-link" data-view="promo" onclick="window.App.switchView('promo')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Promotional Posts</span>
+          </button>
+          <button class="nav-link" data-view="kit" onclick="window.App.switchView('kit')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Business Kit Generator</span>
+            <span class="nav-badge glow">Kit</span>
+          </button>
+          <button class="nav-link" data-view="preview" onclick="window.App.switchView('preview')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <span>Phone Preview</span>
+          </button>
+
+          <div class="nav-category">Management</div>
+          <button class="nav-link" data-view="saved" onclick="window.App.switchView('saved')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            <span>Saved Businesses</span>
+          </button>
+          <button class="nav-link" data-view="export" onclick="window.App.switchView('export')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Export &amp; Download</span>
+          </button>
+          <button class="nav-link" data-view="guide" onclick="window.App.switchView('guide')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>GitHub Pages Guide</span>
+          </button>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+          <div class="storage-status">
+            <span id="storage-business-count">1 Business Saved</span>
+            <span style="color:#10b981;">● Online/Offline</span>
+          </div>
+          <div style="font-size:0.7rem;color:var(--text-muted);">
+            Static Web App • LocalStorage Active
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Layout -->
+      <div id="main-content">
+        <!-- Top App Bar for Mobile / Tablet -->
+        <header id="top-bar">
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <button class="mobile-menu-btn" aria-label="Toggle Navigation" onclick="window.App.toggleMobileMenu()">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="top-bar-title">
+              <span>Local Business Kit Generator</span>
+            </div>
+          </div>
+
+          <div class="top-bar-actions">
+            <button class="btn btn-primary btn-sm" onclick="window.App.startNewBusiness()">
+              + New Business
+            </button>
+          </div>
+        </header>
+
+        <!-- Dynamic View Container (Driven by script.js) -->
+        <main id="view-content" class="view-container">
+          <!-- Populated dynamically by script.js -->
+        </main>
+      </div>
+
+      <!-- Mobile Bottom Navigation Bar (Android Touch-Optimized) -->
+      <nav id="mobile-bottom-nav">
+        <button class="mobile-nav-btn active" data-view="dashboard" onclick="window.App.switchView('dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="business-form" onclick="window.App.switchView('business-form')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+          <span>Details</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="services" onclick="window.App.switchView('services')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Services</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="card" onclick="window.App.switchView('card')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <span>Card</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="preview" onclick="window.App.switchView('preview')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="2" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span>Preview</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="kit" onclick="window.App.switchView('kit')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>Kit</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Confirmation Modal Dialog -->
+    <div id="confirm-modal" class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="modal-title">Confirm Action</h3>
+          <button id="modal-close-icon" class="modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-message" style="color:var(--text-secondary);font-size:0.95rem;line-height:1.5;"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="modal-cancel-btn" class="btn btn-secondary">Cancel</button>
+          <button id="modal-confirm-btn" class="btn btn-danger">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- General Purpose Modal Dialog (Services, Categories, etc.) -->
+    <div id="general-modal" class="modal-overlay">
+      <div class="modal-box" id="general-modal-box">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Standalone Vanilla JS Application Engine (Zero external dependencies) -->
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
